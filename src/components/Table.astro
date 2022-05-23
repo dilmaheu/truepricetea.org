@@ -1,0 +1,206 @@
+---
+const table1 = [
+  {
+    externality: "Water pollution",
+    cost: 11.4231,
+    unit: "EUR/kg processed tea",
+    percentage: 41.43,
+  },
+  {
+    externality: "Air pollution",
+    // TODO: CHECK IF 4 DECIMALS ARE NEEDED
+    cost: 5.024,
+    unit: "EUR/kg processed tea",
+    percentage: 18.22,
+  },
+  {
+    externality: "Land use",
+    cost: 9.6014,
+    unit: "EUR/kg processed tea",
+    percentage: 34.82,
+  },
+  {
+    externality: "Health & Safety",
+    cost: 0.0254,
+    unit: "EUR/kg processed tea",
+    percentage: 0.09,
+  },
+  {
+    externality: "Social Security",
+    cost: 1.1823,
+    unit: "EUR/kg processed tea",
+    percentage: 4.29,
+  },
+  {
+    externality: "Income",
+    cost: 0.3142,
+    unit: "EUR/kg processed tea",
+    percentage: 1.14,
+  },
+  {
+    externality: "Total true cost",
+    cost: 27.5704,
+    unit: "EUR/kg processed tea",
+    percentage: 100.0,
+  },
+];
+
+const table2 = [
+  {
+    externality: "Water pollution",
+    cost: 0.0228,
+    unit: "EUR/kg processed tea",
+    percentage: 41.43,
+  },
+  {
+    externality: "Air pollution",
+    cost: 0.01,
+    unit: "EUR/kg processed tea",
+    percentage: 18.22,
+  },
+  {
+    externality: "Land use",
+    cost: 0.0192,
+    unit: "EUR/kg processed tea",
+    percentage: 34.82,
+  },
+  {
+    externality: "Health & Safety",
+    cost: 0.0001,
+    unit: "EUR/kg processed tea",
+    percentage: 0.09,
+  },
+  {
+    externality: "Social Security",
+    cost: 0.0024,
+    unit: "EUR/kg processed tea",
+    percentage: 4.29,
+  },
+  {
+    externality: "Income",
+    cost: 0.0006,
+    unit: "EUR/kg processed tea",
+    percentage: 1.14,
+  },
+  {
+    externality: "Total true cost",
+    cost: 0.0551,
+    unit: "EUR/kg processed tea",
+    percentage: 100.0,
+  },
+];
+---
+
+<div class="container padding-48">
+  <table class="table-1">
+    <tr>
+      <th>Externality</th>
+      <th>True cost</th>
+      <th>Unit</th>
+      <th>True cost (%)</th>
+    </tr>
+    {table2.map((item, i) => (
+      <tr class={`row-${i.toString()}`}>
+        <td class="externality">{item.externality}</td>
+        <td class="cost number">{item.cost}</td>
+        <td class="unit">{item.unit}</td>
+        <td class="percentage number">{item.percentage}%</td>
+      </tr>
+    ))}
+  </table>
+
+  <table>
+    <tr>
+      <th>Externality</th>
+      <th>True cost</th>
+      <th>Unit</th>
+      <th>True cost (%)</th>
+    </tr>
+    {table2.map((item, i) => (
+      <tr class={`row-${i.toString()}`}>
+        <td class="externality">{item.externality}</td>
+        <td class="cost number">{item.cost}</td>
+        <td class="unit">{item.unit}</td>
+        <td class="percentage number">{item.percentage}%</td>
+      </tr>
+    ))}
+  </table>
+</div>
+
+<style>
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  table {
+    border: 2px solid;
+    border-collapse: collapse;
+    width: auto;
+  }
+
+  th,
+  td {
+    padding: 2px 8px;
+    text-align: left;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+  }
+
+  .number {
+    text-align: right;
+  }
+
+  .row-0 {
+    background-color: rgb(144, 174, 124);
+  }
+
+  .row-1 {
+    background-color: rgb(144, 174, 124, 0.65);
+  }
+
+  .row-2 {
+    background-color: rgb(144, 174, 124, 0.45);
+  }
+
+  .row-3 {
+    background-color: rgb(244, 176, 132);
+  }
+
+  .row-4 {
+    background-color: rgb(244, 176, 132, 0.65);
+  }
+
+  .row-5 {
+    background-color: rgb(244, 176, 132, 0.45);
+  }
+
+  .row-6 {
+    background-color: rgb(217, 225, 242);
+  }
+
+  @media only screen and (max-width: 1160px) {
+    .container {
+      flex-direction: column;
+    }
+
+    .table-1 {
+      margin-bottom: 40px;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    /* .container {
+      overflow-x: scroll;
+    }
+
+    table {
+      width: 500px;
+    } */
+
+    th,
+    td {
+      padding: 0px 3px;
+    }
+  }
+</style>
