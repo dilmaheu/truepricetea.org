@@ -29,7 +29,7 @@ text = text !== undefined ? text : percentage;
   </svg>
   <!-- TODO: USE BUILT-IN CLASSES -->
   <div class="desc">
-    <h5 class="title">{desc.title}</h5>
+    <h5 class={`title ${color}`}>{desc.title}</h5>
     <p>{desc.text}</p>
   </div>
 </div>
@@ -76,17 +76,28 @@ text = text !== undefined ? text : percentage;
       stroke-dasharray: 0 100;
     }
   }
+  .circular-chart.green .circle {
+    stroke: var(--row-2);
+  }
 
   .circular-chart.orange .circle {
     stroke: var(--row-4);
   }
 
-  .circular-chart.green .circle {
-    stroke: var(--row-2);
-  }
-
   .circular-chart.blue .circle {
     stroke: var(--row-7);
+  }
+
+  .title.green {
+    color: var(--row-2);
+  }
+
+  .title.orange {
+    color: var(--row-4);
+  }
+
+  .title.blue {
+    color: var(--row-7);
   }
 
   .percentage {
