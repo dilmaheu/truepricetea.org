@@ -1,7 +1,41 @@
+---
+import truepriceLogo from "../assets/img/True-Price-Logo-2020.png";
+import hasLogo from "../assets/img/has-logo.svg";
+---
+
 <footer>
-  <section class="padding-16 color-neutral">
-    <div class="container align-center">
-      <p>Conclusions TCA Ceylon Tea by HAS - January 2022</p>
+  <section class="color-neutral">
+    <div class="container align-center padding-32">
+      <div class="logos">
+        <img class="logo trueprice" src={truepriceLogo} alt="Trueprice logo" />
+        <img class="logo" src={hasLogo} alt="HAS logo" />
+      </div>
     </div>
+    <p class="align-horizontal text-al padding-8">
+      Conclusions TCA Ceylon Tea by HAS - January 2022
+    </p>
   </section>
 </footer>
+
+<style>
+  .logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo {
+    width: 500px;
+    max-height: 150px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .logos {
+      flex-direction: column;
+    }
+
+    .trueprice {
+      margin-bottom: 30px;
+    }
+  }
+</style>
