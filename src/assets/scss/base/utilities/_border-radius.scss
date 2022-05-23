@@ -2,7 +2,7 @@
 // | Border Radius
 // | -------------------------------------------------------------
 
-@use '../border' as *;
+@use "../border" as *;
 
 .radius-small {
   @include radius-small;

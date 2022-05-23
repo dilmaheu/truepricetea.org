@@ -6,7 +6,7 @@
 
 .container {
   margin: 0 auto;
-  padding: 0 calc(var(--gap-default)/2);
+  padding: 0 calc(var(--gap-default) / 2);
   max-width: 100%;
 
   @include breakpoint(medium) {
@@ -14,7 +14,7 @@
   }
 
   @include breakpoint(large) {
-    padding: 0 calc(var(--gap-default)/2);
+    padding: 0 calc(var(--gap-default) / 2);
     max-width: 1200px;
   }
 

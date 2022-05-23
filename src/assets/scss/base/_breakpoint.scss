@@ -6,7 +6,7 @@ $breakpoints: (
   "default": 0,
   "small": 24em,
   "medium": 48em,
-  "large": 75em
+  "large": 75em,
 ) !default;
 
 @mixin breakpoint($breakpoint) {
@@ -18,8 +18,7 @@ $breakpoints: (
     @media (min-width: $breakpoint+"px") {
       @content;
     }
-  }
-  @else {
+  } @else {
     @error "Not a correct value, check _base-breakpoints for availible values.";
   }
 }

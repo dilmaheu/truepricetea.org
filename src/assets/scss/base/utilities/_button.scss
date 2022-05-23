@@ -2,8 +2,8 @@
 // | Button
 // | -------------------------------------------------------------
 
-@use '../size' as *;
-@use '../space' as *;
+@use "../size" as *;
+@use "../space" as *;
 
 .button {
   display: inline-block;
@@ -15,7 +15,8 @@
   background-color: var(--primary-300);
   border: 2px solid var(--primary-300);
   border-radius: 3px;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
 
   &:hover,
   &:focus {

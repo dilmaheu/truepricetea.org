@@ -2,7 +2,7 @@
 // | Spacings
 // | -------------------------------------------------------------
 
-@use '../space' as *;
+@use "../space" as *;
 
 @each $space in $space-scale {
   $nr: nth($space, 1);

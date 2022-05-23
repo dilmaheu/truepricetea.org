@@ -2,10 +2,10 @@
 // | Animation
 // | -------------------------------------------------------------
 
-@use '../keyframes/blink' as *;
-@use '../keyframes/fade-in' as *;
-@use '../keyframes/pop-up' as *;
-@use '../keyframes/spin' as *;
+@use "../keyframes/blink" as *;
+@use "../keyframes/fade-in" as *;
+@use "../keyframes/pop-up" as *;
+@use "../keyframes/spin" as *;
 
 [data-animation="blink"] {
   animation: blink 0.25s ease-in-out 2;
