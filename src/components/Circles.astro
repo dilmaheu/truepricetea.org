@@ -1,0 +1,83 @@
+---
+import Circle from "./Circle.astro";
+---
+
+<div class="circle-container flex-wrapper container padding-48 w-full">
+  <!-- TODO: CHECK IF TEXT SHOULD BE DYNANIC -->
+  <Circle
+    color="orange"
+    percentage={1}
+    text={"<1"}
+    desc={{ title: "HEALTH & SAFETY", text: "0.0001 EUR/bag of tea" }}
+  />
+  <Circle
+    color="orange"
+    percentage={4}
+    desc={{ title: "SOCIAL SECURITY", text: "0.0024 EUR/bag of tea" }}
+  />
+  <Circle
+    color="orange"
+    percentage={1}
+    desc={{ title: "INCOME", text: "0.006 EUR/bag of tea" }}
+  />
+  <Circle
+    color="orange"
+    percentage={5}
+    desc={{ title: "TOTAL PERCENTAGE", text: "0.0031 EUR/bag of tea" }}
+  />
+</div>
+
+<!-- ----------------------------------------------------------- -->
+
+<div class="circle-container flex-wrapper container padding-48 w-full">
+  <!-- TODO: CHECK IF TEXT SHOULD BE DYNANIC -->
+  <Circle
+    color="green"
+    percentage={48}
+    desc={{ title: "WATER POLLUTION", text: "0.0228 EUR/bag of tea" }}
+  />
+  <Circle
+    color="green"
+    percentage={18}
+    desc={{ title: "AIR POLLUTION", text: "0.0100 EUR/bag of tea" }}
+  />
+  <Circle
+    color="green"
+    percentage={35}
+    desc={{ title: "LAND USE", text: "0.0192 EUR/bag of tea" }}
+  />
+  <Circle
+    color="green"
+    percentage={95}
+    desc={{ title: "TOTAL PERCENTAGE", text: "0.0520 EUR/bag of tea" }}
+  />
+</div>
+
+<style>
+  .flex-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+</style>
+
+<script is:inline>
+  let targets = document.querySelectorAll(".circle-container");
+
+  targets.forEach((target) => {
+    function handleIntersection(entries) {
+      entries.map((entry) => {
+        if (entry.isIntersecting) {
+          let circles = document.querySelectorAll(".circle-container .circle");
+          circles.forEach((circle) => {
+            circle.classList.add("animate");
+          });
+        }
+      });
+    }
+
+    let observer = new IntersectionObserver(handleIntersection);
+
+    observer.observe(target);
+  });
+</script>
