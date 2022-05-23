@@ -1,9 +1,9 @@
 {
-  "name": "accessible-astro-starter",
-  "description": "An Accessible Starter Theme for Astro including several accessiblity features and tools to help you build faster.",
-  "version": "1.5.2",
-  "author": "Mark Teekman",
-  "homepage": "https://accessible-astro.dev",
+  "name": "truepricetea.org",
+  "description": "truepricetea.org website",
+  "version": "1.0.0",
+  "author": "dilmaheu",
+  "homepage": "https://truepricetea.org",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
