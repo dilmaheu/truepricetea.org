@@ -1,0 +1,96 @@
+<div class="container align-center padding-48">
+  <figure class="pie-chart">
+    <h3>Division True Costs</h3>
+    <figcaption>
+      <p>
+        Water pollution 41.43<span style="color:var(--row-1);"></span>
+      </p>
+      <p>
+        Air pollution 18.22<span style="color:var(--row-2)"></span>
+      </p>
+      <p>
+        Land use 34.82<span style="color:var(--row-3)"></span>
+      </p>
+      <p>
+        Health & Safety 0.09<span style="color:var(--row-4)"></span>
+      </p>
+      <p>
+        Social Security 4.29<span style="color:var(--row-5)"></span>
+      </p>
+      <p>
+        Income 1.14<span style="color:var(--row-6)"></span>
+      </p>
+    </figcaption>
+    <!-- <cite>International Energy Agency</cite> -->
+  </figure>
+</div>
+
+<style>
+  .pie-chart {
+    background: radial-gradient(circle closest-side, transparent 68%, white 0),
+      conic-gradient(
+        var(--row-1) 0,
+        var(--row-1) 41.4%,
+        var(--row-2) 0,
+        var(--row-2) 59.6%,
+        var(--row-3) 0,
+        var(--row-3) 94.4%,
+        var(--row-4) 0,
+        var(--row-4) 94.5%,
+        var(--row-5) 0,
+        var(--row-5) 98.8%,
+        var(--row-6) 0,
+        var(--row-6) 99.9%
+      );
+    position: relative;
+    width: 100%;
+    /* TODO: MAKE MORE RESPONSIVE */
+    min-height: 550px;
+    margin: 0;
+    outline: 1px solid #ccc;
+  }
+
+  h3 {
+    text-align: center;
+    padding-top: 20px;
+  }
+  p {
+    display: inline-flex;
+    margin: 0 8px;
+  }
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pie-chart cite {
+    position: absolute;
+    bottom: 0;
+    font-size: 80%;
+    padding: 1rem;
+    color: gray;
+  }
+
+  .pie-chart figcaption {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    font-size: smaller;
+    text-align: center;
+  }
+
+  .pie-chart span:after {
+    display: inline-block;
+    content: "";
+    width: 0.8em;
+    height: 0.8em;
+    margin-left: 0.4em;
+    height: 0.8em;
+    border-radius: 0.2em;
+    background: currentColor;
+  }
+</style>
