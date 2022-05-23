@@ -1,0 +1,33 @@
+---
+const conclusions = [
+  "The six most impactful externalities that account for the majority of the true cost of tea in Sri Lanka's tea supply chain are water pollution, air pollution, land use, health & safety, social security and income.",
+  " Based on the outcome of the materiality matrix, several key topics have been identified as high priority in regard to Dilmah and the stakeholders involved in the European tea sector. These topics should be considered in order to effectively penetrate the European tea market.",
+  "When using the bulk price of Sri Lankan tea which is €0.006 per bag of tea, the true cost is €0.06 per bag of tea. The true cost gap is €0.055.",
+  "When using the retail price of Dilmah tea which is €0.181 per bag of tea, the true cost is €0.24 per bag of tea. The true cost gap is €0.055.",
+  "When using general data, there is virtually no difference in outcome between the production of green and black Ceylon tea.",
+  "The environmental externalities currently account for 95% of the final true cost, which provides opportunities for progress.",
+];
+---
+
+<section class="padding-48 color-primary">
+  <div class="container">
+    <h2 class="margin-48 bottom">
+      The research findings have come to the following conclusions as summed up
+      below.
+    </h2>
+  </div>
+  <div class="container" data-auto-grid="3">
+    {conclusions.map((conclusion) => (
+      <div
+        class="text-neutral-100 bg-neutral-900 space-32 radius-large elevation-500"
+        data-animation="fade-in"
+      >
+        <p>{conclusion}</p>
+      </div>
+    ))}
+  </div>
+  <!-- <div class="container margin-16 top">
+      <a href="#" class="button">Tab to me first!</a>&nbsp;
+      <a href="#" class="button color-secondary">Then it's my turn</a>
+    </div> -->
+</section>
