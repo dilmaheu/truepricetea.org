@@ -5,9 +5,9 @@ import Footer from "../components/Footer.astro";
 
 import { MetatagsProps } from "../utils/api";
 
-const { metatags } = Astro.props as MetatagsProps;
+const { metatags, _404 } = Astro.props as MetatagsProps & { _404: boolean };
 const description = metatags.data.attributes.description;
-const title = metatags.data.attributes.title;
+const title = _404 ? "404" : metatags.data.attributes.title;
 const thumbnail =
   metatags.url + metatags.data.attributes.thumbnail.data.attributes.url;
 const favicon =
