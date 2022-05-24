@@ -1,0 +1,41 @@
+---
+import DE from "../assets/img/DE-language.svg";
+import NL from "../assets/img/NL-language.svg";
+import GB from "../assets/img/GB-language.svg";
+---
+
+<div class="menu-item has-dropdown">
+  <button aria-haspopup="true" aria-expanded="false">Other languages</button>
+  <ul id="lang-list">
+    <li class="submenu-item">
+      <a href="/"><img src={GB} alt="English language flag" /></a>
+    </li>
+    <li class="submenu-item">
+      <a href="/de" hreflang="de-de"
+        ><img src={DE} alt="Dutch language flag" />
+      </a>
+    </li>
+    <li class="submenu-item">
+      <a href="/nl" hreflang="nl-nl"
+        ><img src={NL} alt="German language flag" />
+      </a>
+    </li>
+  </ul>
+</div>
+
+<style>
+  img {
+    width: 40px;
+    height: 20px;
+  }
+
+  :global(#main-navigation) #lang-list {
+    min-width: auto;
+  }
+
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

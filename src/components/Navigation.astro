@@ -1,6 +1,7 @@
 ---
 import ResponsiveToggle from "./ResponsiveToggle.astro";
 import { DarkMode } from "accessible-astro-components";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 ---
 
 <div id="main-navigation" class="is-desktop padding-16 color-neutral">
@@ -9,11 +10,14 @@ import { DarkMode } from "accessible-astro-components";
       <div class="wrapper small-12 x-end w-full">
         <nav class="desktop-menu">
           <ul>
-            <slot />
+            <slot></slot>
           </ul>
         </nav>
-        <DarkMode client:load />
-        <ResponsiveToggle client:load />
+        <div class="interactive">
+          <DarkMode client:load />
+          <ResponsiveToggle client:load />
+          <LanguageSwitcher />
+        </div>
       </div>
       <!-- <nav class="mobile-menu">
         <ul>
@@ -236,6 +240,16 @@ import { DarkMode } from "accessible-astro-components";
       .mobile-menu {
         display: none;
       }
+    }
+
+    .interactive {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .interactive .darkmode-toggle {
+      margin-right: 10px;
     }
 
     // &.is-mobile {
