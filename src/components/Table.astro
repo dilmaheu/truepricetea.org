@@ -41,6 +41,7 @@ const { tableContent, extraClass } = Astro.props as Props;
     border: 2px solid;
     border-collapse: collapse;
     width: auto;
+    border-color: #000;
   }
 
   th,
@@ -49,6 +50,11 @@ const { tableContent, extraClass } = Astro.props as Props;
     text-align: left;
     border-bottom: 2px solid;
     border-right: 2px solid;
+    border-color: #000;
+  }
+
+  td {
+    color: #000;
   }
 
   .number {

@@ -25,7 +25,7 @@ text = text !== undefined ? text : percentage;
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
     ></path>
-    <text x="18" y="20.35" class="percentage">{text}%</text>
+    <text x="18" y="20.35" class="percentage text-neutral-100">{text}%</text>
   </svg>
   <!-- TODO: USE BUILT-IN CLASSES -->
   <div class="desc">
@@ -59,6 +59,10 @@ text = text !== undefined ? text : percentage;
     fill: none;
     stroke: #eee;
     stroke-width: 3.8;
+  }
+
+  :global(.darkmode) .circle-bg {
+    stroke: #6a6a6a;
   }
 
   .circle {
@@ -105,6 +109,10 @@ text = text !== undefined ? text : percentage;
     font-family: sans-serif;
     font-size: 0.5em;
     text-anchor: middle;
+  }
+
+  :global(.darkmode) .percentage {
+    fill: #fff;
   }
 
   @media only screen and (max-width: 1120px) {
