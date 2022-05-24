@@ -1,101 +1,17 @@
 ---
 import Table from "./Table.astro";
+import { Content } from "../utils/api";
 
-const table1 = [
-  {
-    externality: "Water pollution",
-    cost: 11.4231,
-    unit: "EUR/kg processed tea",
-    percentage: 41.43,
-  },
-  {
-    externality: "Air pollution",
-    // TODO: CHECK IF 4 DECIMALS ARE NEEDED
-    cost: 5.024,
-    unit: "EUR/kg processed tea",
-    percentage: 18.22,
-  },
-  {
-    externality: "Land use",
-    cost: 9.6014,
-    unit: "EUR/kg processed tea",
-    percentage: 34.82,
-  },
-  {
-    externality: "Health & Safety",
-    cost: 0.0254,
-    unit: "EUR/kg processed tea",
-    percentage: 0.09,
-  },
-  {
-    externality: "Social Security",
-    cost: 1.1823,
-    unit: "EUR/kg processed tea",
-    percentage: 4.29,
-  },
-  {
-    externality: "Income",
-    cost: 0.3142,
-    unit: "EUR/kg processed tea",
-    percentage: 1.14,
-  },
-  {
-    externality: "Total true cost",
-    cost: 27.5704,
-    unit: "EUR/kg processed tea",
-    percentage: 100.0,
-  },
-];
+export interface Props {
+  content: Content;
+}
 
-const table2 = [
-  {
-    externality: "Water pollution",
-    cost: 0.0228,
-    unit: "EUR/kg processed tea",
-    percentage: 41.43,
-  },
-  {
-    externality: "Air pollution",
-    cost: 0.01,
-    unit: "EUR/kg processed tea",
-    percentage: 18.22,
-  },
-  {
-    externality: "Land use",
-    cost: 0.0192,
-    unit: "EUR/kg processed tea",
-    percentage: 34.82,
-  },
-  {
-    externality: "Health & Safety",
-    cost: 0.0001,
-    unit: "EUR/kg processed tea",
-    percentage: 0.09,
-  },
-  {
-    externality: "Social Security",
-    cost: 0.0024,
-    unit: "EUR/kg processed tea",
-    percentage: 4.29,
-  },
-  {
-    externality: "Income",
-    cost: 0.0006,
-    unit: "EUR/kg processed tea",
-    percentage: 1.14,
-  },
-  {
-    externality: "Total true cost",
-    cost: 0.0551,
-    unit: "EUR/kg processed tea",
-    percentage: 100.0,
-  },
-];
+const { content } = Astro.props as Props;
+const tables = content.data.attributes.table;
 ---
 
 <div class="container padding-48">
-  <Table tableContent={table1} extraClass="table-1" />
-  <Table tableContent={table2} />
+  {tables.map((table) => <Table table={table} />)}
 </div>
 
 <style>

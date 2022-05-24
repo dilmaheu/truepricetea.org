@@ -1,32 +1,26 @@
 ---
+import { table } from "../utils/api";
+
 export interface Props {
-  tableContent: item[];
-  extraClass?: string;
+  table: table;
 }
 
-type item = {
-  externality: string;
-  cost: number;
-  unit: string;
-  percentage: number;
-};
-
-const { tableContent, extraClass } = Astro.props as Props;
+const { table } = Astro.props as Props;
 ---
 
-<table class={extraClass}>
+<table>
   <tr>
     <th>Externality</th>
     <th>True cost</th>
     <th>Unit</th>
     <th>True cost (%)</th>
   </tr>
-  {tableContent.map((item, i) => (
+  {table.table_row.map((item, i) => (
     <tr class={`row-${i.toString()}`}>
       <td class="externality">{item.externality}</td>
-      <td class="cost number">{item.cost}</td>
+      <td class="cost number">{item.true_cost}</td>
       <td class="unit">{item.unit}</td>
-      <td class="percentage number">{item.percentage}%</td>
+      <td class="percentage number">{item.true_cost_percentage}%</td>
     </tr>
   ))}
 </table>
@@ -42,6 +36,7 @@ const { tableContent, extraClass } = Astro.props as Props;
     border-collapse: collapse;
     width: auto;
     border-color: #000;
+    margin: 0 25px;
   }
 
   th,
@@ -94,20 +89,12 @@ const { tableContent, extraClass } = Astro.props as Props;
       flex-direction: column;
     }
 
-    .table-1 {
-      margin-bottom: 40px;
+    table {
+      margin: 20px 0;
     }
   }
 
   @media only screen and (max-width: 425px) {
-    /* .container {
-      overflow-x: scroll;
-    }
-
-    table {
-      width: 500px;
-    } */
-
     th,
     td {
       padding: 0px 3px;

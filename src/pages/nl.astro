@@ -6,20 +6,26 @@ import Graph from "../components/Graph.astro";
 import TeaCup from "../components/TeaCup.astro";
 import Circles from "../components/Circles.astro";
 
-import { getSiteMetatags } from "../utils/api";
+import {
+  getSiteMetatags,
+  getSiteContent,
+  Content,
+  Metatags,
+} from "../utils/api";
 
-const metatags = await getSiteMetatags("nl");
+const metatags: Metatags = await getSiteMetatags("nl");
+const content: Content = await getSiteContent("nl");
 ---
 
 <DefaultLayout metatags={metatags}>
   <!-- TODO: CHANGE TITLE AND METATAGS -->
   <section class="margin-48">
     <div class="container">
-      <h1>Conclusies TCA Ceylon Tea door HAS - januari 2022</h1><br />
+      <h1>{content.data.attributes.title}</h1><br />
     </div>
   </section>
-  <Conclusions />
-  <Tables />
+  <Conclusions content={content} />
+  <Tables content={content} />
   <Graph />
   <TeaCup />
   <Circles />
