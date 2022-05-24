@@ -65,21 +65,19 @@ import Circle from "./Circle.astro";
 </style>
 
 <script is:inline>
-  let targets = document.querySelectorAll(".circle-container");
+  const targets = document.querySelectorAll(".single-chart");
 
   targets.forEach((target) => {
     function handleIntersection(entries) {
       entries.map((entry) => {
         if (entry.isIntersecting) {
-          let circles = document.querySelectorAll(".circle-container .circle");
-          circles.forEach((circle) => {
-            circle.classList.add("animate");
-          });
+          const circle = entry.target.getElementsByClassName("circle")[0];
+          circle.classList.add("animate");
         }
       });
     }
 
-    let observer = new IntersectionObserver(handleIntersection);
+    const observer = new IntersectionObserver(handleIntersection);
 
     observer.observe(target);
   });
