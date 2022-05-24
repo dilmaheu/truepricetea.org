@@ -1,6 +1,7 @@
 ---
 import truepriceLogo from "../assets/img/True-Price-Logo-2020.png";
 import hasLogo from "../assets/img/has-logo.svg";
+import dilmahLogo from "../assets/img/Dilmah-Logo.svg";
 ---
 
 <footer>
@@ -8,7 +9,8 @@ import hasLogo from "../assets/img/has-logo.svg";
     <div class="container align-center padding-32">
       <div class="logos">
         <img class="logo trueprice" src={truepriceLogo} alt="Trueprice logo" />
-        <img class="logo" src={hasLogo} alt="HAS logo" />
+        <img class="logo has" src={hasLogo} alt="HAS logo" />
+        <img class="logo dilmah" src={dilmahLogo} alt="Dilmah logo" />
       </div>
     </div>
     <p class="align-horizontal text-al padding-8">
@@ -25,8 +27,9 @@ import hasLogo from "../assets/img/has-logo.svg";
   }
 
   .logo {
-    width: 500px;
-    max-height: 150px;
+    max-width: 300px;
+    max-height: 100px;
+    margin: 0 30px;
   }
 
   @media only screen and (max-width: 768px) {
@@ -34,8 +37,9 @@ import hasLogo from "../assets/img/has-logo.svg";
       flex-direction: column;
     }
 
-    .trueprice {
-      margin-bottom: 30px;
+    .trueprice,
+    .has {
+      margin: 0 0 30px 0;
     }
   }
 </style>
