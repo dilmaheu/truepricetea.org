@@ -86,13 +86,13 @@ export type conclusion = {
 
 export type table = {
   id: number;
-  use_in_graphs: boolean;
   table_row: {
     id: number;
     externality: string;
     true_cost: number;
     unit: string;
     true_cost_percentage: number;
+    color: string;
   }[];
 };
 

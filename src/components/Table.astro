@@ -15,8 +15,8 @@ const { table } = Astro.props as Props;
     <th>Unit</th>
     <th>True cost (%)</th>
   </tr>
-  {table.table_row.map((item, i) => (
-    <tr class={`row-${i.toString()}`}>
+  {table.table_row.map((item) => (
+    <tr style={`background-color: ${item.color}`}>
       <td class="externality">{item.externality}</td>
       <td class="cost number">{item.true_cost}</td>
       <td class="unit">{item.unit}</td>
@@ -54,34 +54,6 @@ const { table } = Astro.props as Props;
 
   .number {
     text-align: right;
-  }
-
-  .row-0 {
-    background-color: var(--row-1);
-  }
-
-  .row-1 {
-    background-color: var(--row-2);
-  }
-
-  .row-2 {
-    background-color: var(--row-3);
-  }
-
-  .row-3 {
-    background-color: var(--row-4);
-  }
-
-  .row-4 {
-    background-color: var(--row-5);
-  }
-
-  .row-5 {
-    background-color: var(--row-6);
-  }
-
-  .row-6 {
-    background-color: var(--row-7);
   }
 
   @media only screen and (max-width: 1160px) {
