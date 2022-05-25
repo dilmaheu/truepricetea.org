@@ -2,7 +2,7 @@ export const url = "https://cms.truepricetea.nl";
 
 export async function getSiteContent(lang: "en" | "de" | "nl" = "en") {
   const response = await fetch(
-    `${url}/api/site-information?populate=conclusions&populate=table.table_row&locale=${lang}`
+    `${url}/api/site-information?populate=conclusions&populate=table.table_row&populate=graph.graph_data&locale=${lang}`
   );
   const res = await response.json();
   return { ...res, lang, url };
@@ -30,26 +30,36 @@ export interface Content {
       publishedAt: string;
       locale: string;
       conclusions_title: string;
-      graph_title: string;
       teacup_description: string;
-      conclusions: [{ id: number; conclusion: string }];
+      conclusions: conclusion[];
       table: table[];
+      graph: { id: number; title: string; graph_data: graph[] };
     };
   };
 }
 
+export type conclusion = {
+  id: number;
+  conclusion: string;
+};
+
 export type table = {
   id: number;
   use_in_graphs: boolean;
-  table_row: [
-    {
-      id: number;
-      externality: string;
-      true_cost: number;
-      unit: string;
-      true_cost_percentage: number;
-    }
-  ];
+  table_row: {
+    id: number;
+    externality: string;
+    true_cost: number;
+    unit: string;
+    true_cost_percentage: number;
+  }[];
+};
+
+export type graph = {
+  id: number;
+  title: string;
+  true_cost_percentage: number;
+  color: string;
 };
 
 export interface Metatags {

@@ -1,51 +1,66 @@
-<div class="container align-center padding-48">
-  <figure class="pie-chart">
-    <h3>Division True Costs</h3>
-    <figcaption>
-      <p>
-        Water pollution 41.43<span style="color:var(--row-1);"></span>
-      </p>
-      <p>
-        Air pollution 18.22<span style="color:var(--row-2)"></span>
-      </p>
-      <p>
-        Land use 34.82<span style="color:var(--row-3)"></span>
-      </p>
-      <p>
-        Health & Safety 0.09<span style="color:var(--row-4)"></span>
-      </p>
-      <p>
-        Social Security 4.29<span style="color:var(--row-5)"></span>
-      </p>
-      <p>
-        Income 1.14<span style="color:var(--row-6)"></span>
-      </p>
-    </figcaption>
-    <!-- <cite>International Energy Agency</cite> -->
-  </figure>
-</div>
+---
+import { Content } from "../utils/api";
 
-<style>
-  .pie-chart {
-    background: radial-gradient(
+export interface Props {
+  content: Content;
+}
+
+const { content } = Astro.props as Props;
+const title = content.data.attributes.graph.title;
+const data = content.data.attributes.graph.graph_data;
+
+// CSS VARIABLES
+let colors = {};
+let percentage = {};
+let total = 0;
+let gradiant = "";
+data.forEach((item, i) => {
+  // color css variables
+  if (item.color) {
+    colors[`row-${i + 1}`] = item.color;
+  }
+  // percentage css variables used for the graph
+  total += item.true_cost_percentage;
+  percentage[`percentage-${i + 1}`] = `${total}%`;
+  // background
+  gradiant += `var(--row-${i + 1}) 0,`;
+  gradiant += `var(--row-${i + 1}) var(--percentage-${i + 1}),`;
+  // remove the last coma
+  if (data.length === i + 1) {
+    gradiant = gradiant.slice(0, -1);
+  }
+});
+
+const chartBackground = `background: radial-gradient(
         circle closest-side,
         transparent 68%,
         var(--background) 0
       ),
       conic-gradient(
-        var(--row-1) 0,
-        var(--row-1) 41.4%,
-        var(--row-2) 0,
-        var(--row-2) 59.6%,
-        var(--row-3) 0,
-        var(--row-3) 94.4%,
-        var(--row-4) 0,
-        var(--row-4) 94.5%,
-        var(--row-5) 0,
-        var(--row-5) 98.8%,
-        var(--row-6) 0,
-        var(--row-6) 99.9%
-      );
+        ${gradiant}
+      );`;
+---
+
+<div class="container align-center padding-48">
+  <figure class="pie-chart" style={chartBackground}>
+    <h3>{title}</h3>
+    <figcaption>
+      {data.map((item, i) => (
+        <p>
+          {item.title} {item.true_cost_percentage}
+          <span style={`color:var(--row-${i + 1});`} />
+        </p>
+      ))}
+    </figcaption>
+  </figure>
+</div>
+
+<style define:vars={{ ...colors, ...percentage }}>
+
+</style>
+
+<style>
+  .pie-chart {
     position: relative;
     width: 100%;
     /* TODO: MAKE MORE RESPONSIVE */
