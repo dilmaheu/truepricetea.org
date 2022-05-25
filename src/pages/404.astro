@@ -1,12 +1,18 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
 
-import { getSiteMetatags } from "../utils/api";
+import {
+  getSiteMetatags,
+  getSiteContent,
+  Content,
+  Metatags,
+} from "../utils/api";
 
-const metatags = await getSiteMetatags();
+const metatags: Metatags = await getSiteMetatags();
+const content: Content = await getSiteContent();
 ---
 
-<DefaultLayout metatags={metatags} _404={true}>
+<DefaultLayout metatags={metatags} _404={true} content={content}>
   <section class="margin-48">
     <div class="container">
       <h1>404</h1><br />
