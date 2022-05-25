@@ -1,12 +1,14 @@
+---
+import { Content } from "../utils/api";
+
+export interface Props {
+  content: Content;
+}
+
+const { content } = Astro.props as Props;
+const description = content.data.attributes.teacup_description;
+---
+
 <div class="container padding-48">
-  <p>
-    These results show that when the retail price changes, it only affects the
-    total true cost. Changes in the retail price will have no effect on the true
-    cost gap as it only differs when the input data changes. The same also
-    applies if the retail price in the True Pricing Cafe in Breukelen is
-    assumed. If it is assumed that the asking price for a cup of tea is around 3
-    euros, this will affect the true cost. This will then increase by €0.055,
-    which ultimately results in a true cost of €3,055. However, the true cost
-    gap will still remain the same.
-  </p>
+  <p>{description}</p>
 </div>
