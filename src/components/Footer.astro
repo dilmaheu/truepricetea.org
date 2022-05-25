@@ -1,21 +1,29 @@
 ---
-import truepriceLogo from "../assets/img/True-Price-Logo-2020.png";
-import hasLogo from "../assets/img/has-logo.svg";
-import dilmahLogo from "../assets/img/Dilmah-Logo.svg";
+import { Content, url } from "../utils/api";
+
+export interface Props {
+  content: Content;
+}
+
+const { content } = Astro.props as Props;
+const text = content.data.attributes.footer?.text || "";
+const logos = content.data.attributes.footer?.footer_logos?.data || [];
 ---
 
 <footer>
   <section class="color-neutral">
     <div class="container align-center padding-32">
       <div class="logos">
-        <img class="logo trueprice" src={truepriceLogo} alt="Trueprice logo" />
-        <img class="logo has" src={hasLogo} alt="HAS logo" />
-        <img class="logo dilmah" src={dilmahLogo} alt="Dilmah logo" />
+        {logos.map((logo) => (
+          <img
+            class="logo"
+            src={url + logo.attributes.url}
+            alt={logo.attributes.alternativeText}
+          />
+        ))}
       </div>
     </div>
-    <p class="align-horizontal text-al padding-8">
-      Conclusions TCA Ceylon Tea by HAS - January 2022
-    </p>
+    <p class="align-horizontal text-al padding-8">{text}</p>
   </section>
 </footer>
 
@@ -37,8 +45,7 @@ import dilmahLogo from "../assets/img/Dilmah-Logo.svg";
       flex-direction: column;
     }
 
-    .trueprice,
-    .has {
+    .logo {
       margin: 0 0 30px 0;
     }
   }

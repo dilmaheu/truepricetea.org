@@ -2,7 +2,7 @@ export const url = "https://cms.truepricetea.nl";
 
 export async function getSiteContent(lang: "en" | "de" | "nl" = "en") {
   const response = await fetch(
-    `${url}/api/site-information?populate=conclusions&populate=table.table_row&populate=graph.graph_data&populate=circle_graphs.circle_graph_group&locale=${lang}`
+    `${url}/api/site-information?populate=conclusions&populate=table.table_row&populate=graph.graph_data&populate=circle_graphs.circle_graph_group&populate=footer.footer_logos&locale=${lang}`
   );
   const res = await response.json();
   return { ...res, lang, url };
@@ -38,9 +38,38 @@ export interface Content {
         id: number;
         circle_graph_group: circle_graph[];
       }[];
+      footer: {
+        id: number;
+        text: string;
+        footer_logos: {
+          data: {
+            id: number;
+            attributes: imgAttributes;
+          }[];
+        };
+      };
     };
   };
 }
+
+export type imgAttributes = {
+  name: string;
+  alternativeText: string;
+  caption: string;
+  width: any;
+  height: any;
+  formats: any;
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl: any;
+  provider: string;
+  provider_metadata: any;
+  createdAt: string;
+  updatedAt: string;
+};
 
 export type circle_graph = {
   id: number;
@@ -91,47 +120,13 @@ export interface Metatags {
       thumbnail: {
         data: {
           id: number;
-          attributes: {
-            name: string;
-            alternativeText: string;
-            caption: string;
-            width: any;
-            height: any;
-            formats: any;
-            hash: string;
-            ext: string;
-            mime: string;
-            size: number;
-            url: string;
-            previewUrl: any;
-            provider: string;
-            provider_metadata: any;
-            createdAt: string;
-            updatedAt: string;
-          };
+          attributes: imgAttributes;
         };
       };
       favicon: {
         data: {
           id: number;
-          attributes: {
-            name: string;
-            alternativeText: string;
-            caption: string;
-            width: any;
-            height: any;
-            formats: any;
-            hash: string;
-            ext: string;
-            mime: string;
-            size: number;
-            url: string;
-            previewUrl: any;
-            provider: string;
-            provider_metadata: any;
-            createdAt: string;
-            updatedAt: string;
-          };
+          attributes: imgAttributes;
         };
       };
     };

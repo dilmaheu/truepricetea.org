@@ -3,14 +3,15 @@ import "../assets/scss/globals.scss";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
-import { Metatags } from "../utils/api";
+import { Metatags, Content } from "../utils/api";
 
 export interface Props {
   metatags: Metatags;
   _404?: boolean;
+  content: Content;
 }
 
-const { metatags, _404 } = Astro.props as Props;
+const { metatags, _404, content } = Astro.props as Props;
 const description = metatags.data.attributes.description;
 const title = _404 ? "404" : metatags.data.attributes.title;
 const thumbnail =
@@ -62,7 +63,7 @@ const webUrl = "https://truepricetea-org.pages.dev/";
     <main id="main-content">
       <slot></slot>
     </main>
-    <Footer />
+    <Footer content={content} />
     <style lang="scss">
       // sticky footer on low content pages
       html,

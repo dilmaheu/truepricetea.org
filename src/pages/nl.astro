@@ -17,8 +17,7 @@ const metatags: Metatags = await getSiteMetatags("nl");
 const content: Content = await getSiteContent("nl");
 ---
 
-<DefaultLayout metatags={metatags}>
-  <!-- TODO: CHANGE TITLE AND METATAGS -->
+<DefaultLayout metatags={metatags} content={content}>
   <section class="margin-48">
     <div class="container">
       <h1>{content.data.attributes.title}</h1><br />
