@@ -1,14 +1,131 @@
 ---
 import { Content } from "../utils/api";
+import TeaCupImg from "../assets/img/TeaCup2.svg";
+import TeaCupDetail from "../assets/img/teacup_detail.svg";
 
 export interface Props {
   content: Content;
 }
 
+const yItems = [0.06, 0.05, 0.04, 0.03, 0.02, 0.01];
+const compareItems = [0.06, 0.009, 0.006];
+
+yItems.push(0);
+
 const { content } = Astro.props as Props;
 const description = content.data.attributes.teacup_description;
+const teaCupBase = 37;
+const graphHeight = 200;
+const maxNumber = Math.max(...yItems);
+function calcPosition(
+  height: number,
+  number: number,
+  maxNumber: number,
+  offset: number
+) {
+  return (height * number) / maxNumber - offset + teaCupBase;
+}
 ---
 
 <div class="container padding-48">
+  <div class="graph-wrapper align-center padding-32">
+    <div class="graph">
+      <div class="y-items">
+        {yItems.map((item) => {
+          // 12 is half the size of the text
+          const pos = calcPosition(graphHeight, item, maxNumber, 13)
+          return (
+            <span class="y" style={`bottom: ${pos}px`}>
+              €{item}
+              <span class="separator" />
+            </span>
+          )
+        })}
+      </div>
+      <img class="teacup-detail" src={TeaCupDetail} alt="teacup detail" />
+      <img
+        src={TeaCupImg}
+        alt="teacup image"
+        style={`height: ${graphHeight + teaCupBase + 1}px`}
+      />
+      <div class="compare-items">
+        {compareItems.map((item) => {
+          // 12 is half the size of the text
+          const pos = calcPosition(graphHeight, item, maxNumber, 13)
+          return (
+            <span class="compare-item" style={`bottom: ${pos}px`}>
+              <span class="compare-separator" />€{item}
+            </span>
+          )
+        })}
+      </div>
+    </div>
+  </div>
   <p>{description}</p>
 </div>
+
+<style>
+  .graph {
+    display: flex;
+    border-left: 4px solid black;
+    border-bottom: 4px solid black;
+    padding-left: 5px;
+    position: relative;
+  }
+
+  .y-items {
+    display: flex;
+    position: relative;
+    left: 0;
+    bottom: 0;
+  }
+
+  .y {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 7.5px;
+  }
+
+  .separator {
+    height: 4px;
+    width: 15px;
+    background-color: #000;
+    margin-left: 10px;
+  }
+
+  .compare-separator {
+    height: 4px;
+    width: 150px;
+    background-color: #000;
+    left: -155px;
+    position: absolute;
+  }
+
+  .compare-items {
+    display: flex;
+    position: relative;
+    right: 0;
+    bottom: 0;
+  }
+
+  .compare-item {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 20px;
+  }
+
+  .teacup-detail {
+    position: absolute;
+    top: -110px;
+    height: 90px;
+    left: calc(50% - 5px);
+    transform: translate(-50%);
+  }
+
+  img {
+    /* width: 300px; */
+    /* height: 250px; */
+  }
+</style>
