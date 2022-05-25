@@ -2,7 +2,7 @@ export const url = "https://cms.truepricetea.nl";
 
 export async function getSiteContent(lang: "en" | "de" | "nl" = "en") {
   const response = await fetch(
-    `${url}/api/site-information?populate=conclusions&populate=table.table_row&populate=graph.graph_data&locale=${lang}`
+    `${url}/api/site-information?populate=conclusions&populate=table.table_row&populate=graph.graph_data&populate=circle_graphs.circle_graph_group&locale=${lang}`
   );
   const res = await response.json();
   return { ...res, lang, url };
@@ -34,9 +34,21 @@ export interface Content {
       conclusions: conclusion[];
       table: table[];
       graph: { id: number; title: string; graph_data: graph[] };
+      circle_graphs: {
+        id: number;
+        circle_graph_group: circle_graph[];
+      }[];
     };
   };
 }
+
+export type circle_graph = {
+  id: number;
+  title: string;
+  percentage: number;
+  description: string;
+  color: string;
+};
 
 export type conclusion = {
   id: number;

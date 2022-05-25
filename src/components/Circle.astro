@@ -1,17 +1,16 @@
 ---
 export interface Props {
-  color: "orange" | "green" | "blue";
+  color: string;
   percentage: number;
   desc: { title: string; text: string };
-  text?: string | number;
 }
 
-let { color, percentage, text, desc } = Astro.props as Props;
-text = text !== undefined ? text : percentage;
+let { color, percentage, desc } = Astro.props as Props;
+const percentageText = percentage < 1 ? "<1" : percentage;
 ---
 
 <div class="single-chart">
-  <svg viewBox="0 0 36 36" class={`circular-chart ${color}`}>
+  <svg viewBox="0 0 36 36" class="circular-chart" style={`stroke: ${color};`}>
     <path
       class="circle-bg"
       d="M18 2.0845
@@ -25,11 +24,16 @@ text = text !== undefined ? text : percentage;
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
     ></path>
-    <text x="18" y="20.35" class="percentage text-neutral-100">{text}%</text>
+    <text
+      x="18"
+      y="20.35"
+      class="percentage text-neutral-100"
+      style={`fill: ${color};`}
+      >{percentageText}%
+    </text>
   </svg>
-  <!-- TODO: USE BUILT-IN CLASSES -->
   <div class="desc">
-    <h5 class={`title ${color}`}>{desc.title}</h5>
+    <h5 class="title" style={`color: ${color};`}>{desc.title}</h5>
     <p>{desc.text}</p>
   </div>
 </div>
@@ -71,6 +75,10 @@ text = text !== undefined ? text : percentage;
     stroke-linecap: round;
   }
 
+  .title {
+    text-align: center;
+  }
+
   .animate {
     animation: progress 1.5s ease-out forwards;
   }
@@ -80,35 +88,13 @@ text = text !== undefined ? text : percentage;
       stroke-dasharray: 0 100;
     }
   }
-  .circular-chart.green .circle {
-    stroke: var(--row-2);
-  }
-
-  .circular-chart.orange .circle {
-    stroke: var(--row-4);
-  }
-
-  .circular-chart.blue .circle {
-    stroke: var(--row-7);
-  }
-
-  .title.green {
-    color: var(--row-2);
-  }
-
-  .title.orange {
-    color: var(--row-4);
-  }
-
-  .title.blue {
-    color: var(--row-7);
-  }
 
   .percentage {
     fill: #666;
     font-family: sans-serif;
     font-size: 0.5em;
     text-anchor: middle;
+    stroke-width: 0;
   }
 
   :global(.darkmode) .percentage {

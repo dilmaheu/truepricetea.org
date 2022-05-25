@@ -1,56 +1,27 @@
 ---
 import Circle from "./Circle.astro";
+import { Content } from "../utils/api";
+
+export interface Props {
+  content: Content;
+}
+
+const { content } = Astro.props as Props;
+const circlesGraphs = content.data.attributes.circle_graphs;
 ---
 
-<div class="circle-container flex-wrapper container padding-48 w-full">
-  <!-- TODO: CHECK IF TEXT SHOULD BE DYNANIC -->
-  <Circle
-    color="orange"
-    percentage={1}
-    text={"<1"}
-    desc={{ title: "HEALTH & SAFETY", text: "0.0001 EUR/bag of tea" }}
-  />
-  <Circle
-    color="orange"
-    percentage={4}
-    desc={{ title: "SOCIAL SECURITY", text: "0.0024 EUR/bag of tea" }}
-  />
-  <Circle
-    color="orange"
-    percentage={1}
-    desc={{ title: "INCOME", text: "0.006 EUR/bag of tea" }}
-  />
-  <Circle
-    color="blue"
-    percentage={5}
-    desc={{ title: "TOTAL PERCENTAGE", text: "0.0031 EUR/bag of tea" }}
-  />
-</div>
-
-<!-- ----------------------------------------------------------- -->
-
-<div class="circle-container flex-wrapper container padding-48 w-full">
-  <!-- TODO: CHECK IF TEXT SHOULD BE DYNANIC -->
-  <Circle
-    color="green"
-    percentage={42}
-    desc={{ title: "WATER POLLUTION", text: "0.0228 EUR/bag of tea" }}
-  />
-  <Circle
-    color="green"
-    percentage={18}
-    desc={{ title: "AIR POLLUTION", text: "0.0100 EUR/bag of tea" }}
-  />
-  <Circle
-    color="green"
-    percentage={35}
-    desc={{ title: "LAND USE", text: "0.0192 EUR/bag of tea" }}
-  />
-  <Circle
-    color="blue"
-    percentage={95}
-    desc={{ title: "TOTAL PERCENTAGE", text: "0.0520 EUR/bag of tea" }}
-  />
+<div class="container">
+  {circlesGraphs.map((circles) => (
+    <div class="circle-container flex-wrapper container padding-48 w-full">
+      {circles.circle_graph_group.map((circle) => (
+        <Circle
+          color={circle.color}
+          percentage={circle.percentage}
+          desc={{ title: circle.title, text: circle.description }}
+        />
+      ))}
+    </div>
+  ))}
 </div>
 
 <style>
@@ -58,6 +29,11 @@ import Circle from "./Circle.astro";
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+  }
+
+  .circle-container {
+    border: 0.1px solid #c4c4c4;
+    margin: 20px auto;
   }
 
   @media only screen and (max-width: 1120px) {
