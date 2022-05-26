@@ -1,4 +1,4 @@
-export const url = "https://cms.truepricetea.nl";
+export const url = "https://cms.truepricetea.org";
 
 export async function getSiteContent(lang: "en" | "de" | "nl" = "en") {
   const response = await fetch(

@@ -3,7 +3,7 @@ import DefaultLayout from "../layouts/DefaultLayout.astro";
 import Conclusions from "../components/Conclusions.astro";
 import Tables from "../components/Tables.astro";
 import Graph from "../components/Graph.astro";
-import TeaCup from "../components/TeaCup.astro";
+import TeaCup from "../components/TeaCup.svelte";
 import Circles from "../components/Circles.astro";
 
 import {
@@ -26,6 +26,6 @@ const content: Content = await getSiteContent("de");
   <Conclusions content={content} />
   <Tables content={content} />
   <Graph content={content} />
-  <TeaCup content={content} />
+  <TeaCup client:load />
   <Circles content={content} />
 </DefaultLayout>
