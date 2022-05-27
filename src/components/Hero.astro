@@ -1,0 +1,18 @@
+---
+import { Content } from "../utils/api";
+
+export interface Props {
+  content: Content;
+}
+
+const { content } = Astro.props as Props;
+
+const conclusion_description = content.data.attributes.conclusion_description;
+---
+
+<section class="margin-48">
+  <div class="container">
+    <h1>{content.data.attributes.title}</h1><br />
+    <p>{conclusion_description}</p>
+  </div>
+</section>

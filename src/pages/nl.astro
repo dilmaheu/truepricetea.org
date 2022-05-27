@@ -1,5 +1,6 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
+import Hero from "../components/Hero.astro";
 import Conclusions from "../components/Conclusions.astro";
 import Tables from "../components/Tables.astro";
 import Graph from "../components/Graph.astro";
@@ -18,11 +19,7 @@ const content: Content = await getSiteContent("nl");
 ---
 
 <DefaultLayout metatags={metatags} content={content}>
-  <section class="margin-48">
-    <div class="container">
-      <h1>{content.data.attributes.title}</h1><br />
-    </div>
-  </section>
+  <Hero content={content} />
   <Conclusions content={content} />
   <Tables content={content} />
   <Graph content={content} />

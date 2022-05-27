@@ -23,7 +23,7 @@
   $: contentP = (($percentage - 0.65) / 0.35) * 100;
   $: contentPercentage = (contentP * 800) / 100;
 
-  $: console.log(contentPercentage);
+  // $: console.log(contentPercentage);
 
   // let items: item[] = [
   //   { percentage: 41, color: "#759cf0", name: "lorem" },
@@ -41,7 +41,7 @@
 </script>
 
 <div class="wrapper">
-  <p style={"position: absolute; top:0"}>{$percentage}</p>
+  <!-- <p style={"position: absolute; top:0"}>{$percentage}</p> -->
   <!--?xml version="1.0" encoding="UTF-8"?-->
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620.31 749.34">
     <defs>
