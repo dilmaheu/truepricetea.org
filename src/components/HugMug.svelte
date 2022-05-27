@@ -23,6 +23,7 @@
 
   $: contentP = (($percentage - 0.65) / 0.35) * 100;
   $: contentPercentage = (contentP * 800) / 100;
+  contentPercentage = contentPercentage < 0 ? 0 : contentPercentage;
 
   // $: console.log(contentPercentage);
 

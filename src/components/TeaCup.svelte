@@ -41,7 +41,7 @@
   });
 </script>
 
-<div class="wrapper" id="teacup-wrapper" bind:this={wrapper}>
+<div class="wrapper" bind:this={wrapper}>
   <div class="teacup">
     <HugMug {percentage} data={content} {index} />
   </div>
