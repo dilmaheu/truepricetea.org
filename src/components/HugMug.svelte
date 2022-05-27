@@ -22,8 +22,8 @@
   $: detail3Percentage = (($percentage - offset3) * 100) / 0.2;
 
   $: contentP = (($percentage - 0.65) / 0.35) * 100;
-  $: contentPercentage = (contentP * 800) / 100;
-  contentPercentage = contentPercentage < 0 ? 0 : contentPercentage;
+  $: contentDistance = (contentP * 800) / 100;
+  $: contentPercentage = contentDistance < 0 ? 0 : contentDistance;
 
   // $: console.log(contentPercentage);
 
