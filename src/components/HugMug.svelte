@@ -1,38 +1,47 @@
 <script lang="ts">
-  export let percentage;
+  import { Writable } from "svelte/store";
+  import { TeacupGraph } from "../utils/api";
+  export let percentage: Writable<number>;
+  export let data: TeacupGraph;
+
+  const description = data.description;
+  let items = data.teacup_graph_item;
+
+  // id: number;
+  //   text: string;
+  //   percentage: number;
+  //   color: string;
+
   const offset1 = 0.08;
   const offset2 = 0.25;
   const offset3 = 0.44;
+  $: hideContent = $percentage < 0.44;
   $: detail1Percentage = (($percentage - offset1) * 100) / 0.2;
   $: detail2Percentage = (($percentage - offset2) * 100) / 0.2;
   $: detail3Percentage = (($percentage - offset3) * 100) / 0.2;
 
-  $: contentPercentage = ($percentage - 0.65) * 650 + 400;
-  // $: console.log("  contentPercentage", contentPercentage);
+  $: contentP = (($percentage - 0.65) / 0.35) * 100;
+  $: contentPercentage = (contentP * 800) / 100;
 
-  type item = {
-    percentage: number;
-    color: string;
-    name: string;
-    height?: number;
-  };
+  $: console.log(contentPercentage);
 
-  let items: item[] = [
-    { percentage: 41, color: "#759cf0", name: "lorem" },
-    { percentage: 18, color: "#a4bc92", name: "lorem" },
-    { percentage: 34, color: "yellow", name: "lorem" },
-    { percentage: 0.09, color: "#f49a5f", name: "lorem" },
-    { percentage: 4, color: "#fbd7bf", name: "lorem" },
-    { percentage: 2, color: "#7d9f64", name: "lorem" },
-  ];
+  // let items: item[] = [
+  //   { percentage: 41, color: "#759cf0", name: "lorem" },
+  //   { percentage: 18, color: "#a4bc92", name: "lorem" },
+  //   { percentage: 34, color: "yellow", name: "lorem" },
+  //   { percentage: 0.09, color: "#f49a5f", name: "lorem" },
+  //   { percentage: 4, color: "#fbd7bf", name: "lorem" },
+  //   { percentage: 2, color: "#7d9f64", name: "lorem" },
+  // ];
   const graphHeight = 165;
-  items = items.map((item) => {
+  const itemsWithHeight = items.map((item) => {
     const height = (item.percentage * graphHeight) / 100;
     return { ...item, height };
   });
 </script>
 
 <div class="wrapper">
+  <p style={"position: absolute; top:0"}>{$percentage}</p>
   <!--?xml version="1.0" encoding="UTF-8"?-->
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620.31 749.34">
     <defs>
@@ -95,29 +104,47 @@
   <div class="data">
     <div
       class="helper"
-      style={`transform: translateY(${contentPercentage}px)`}
+      style={`transform: translateY(-${contentPercentage}px)`}
     />
-    {#each items as item}
+    {#each itemsWithHeight as item}
       <div
         class="data-i"
         style={`height: ${item.height}px; background-color: ${item.color}`}
+        class:hideContent
       />
     {/each}
   </div>
 </div>
 
 <div class="legend">
-  {#each items as item}
-    <span class="name">{item.percentage}</span>
+  {#each itemsWithHeight as item}
+    <span class="name">{item.text}</span>
     <span class="icon" style={`color: ${item.color};`} />
   {/each}
 </div>
 
+<div class="description">
+  {description}
+</div>
+
 <style>
   .wrapper {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     position: relative;
     overflow: hidden;
+  }
+
+  .hideContent {
+    display: none;
+  }
+
+  .legend {
+    margin-bottom: 40px;
+  }
+
+  .description {
+    white-space: pre-wrap;
+    text-align: center;
   }
 
   .name {
@@ -141,13 +168,13 @@
     width: 100%;
     position: absolute;
     z-index: -1;
-    top: 235px;
+    top: 231px;
     left: 35px;
   }
 
   .helper {
     position: absolute;
-    top: -400px;
+    top: -620px;
     left: 0;
     width: 100%;
     height: 800px;

@@ -26,6 +26,6 @@ const content: Content = await getSiteContent("de");
   <Conclusions content={content} />
   <Tables content={content} />
   <Graph content={content} />
-  <TeaCup client:load />
+  <TeaCup client:load content={content} />
   <Circles content={content} />
 </DefaultLayout>

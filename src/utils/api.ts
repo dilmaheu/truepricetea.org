@@ -2,7 +2,7 @@ export const url = "https://cms.truepricetea.org";
 
 export async function getSiteContent(lang: "en" | "de" | "nl" = "en") {
   const response = await fetch(
-    `${url}/api/site-information?populate=conclusions&populate=table.table_row&populate=graph.graph_data&populate=circle_graphs.circle_graph_group&populate=footer.footer_logos&locale=${lang}`
+    `${url}/api/site-information?populate=conclusions&populate=table.table_row&populate=graph.graph_data&populate=circle_graphs.circle_graph_group&populate=footer.footer_logos&populate=teacup_graph.teacup_graph_item&locale=${lang}`
   );
   const res = await response.json();
   return { ...res, lang, url };
@@ -49,9 +49,16 @@ export interface Content {
           }[];
         };
       };
+      teacup_graph: TeacupGraph[];
     };
   };
 }
+
+export type TeacupGraph = {
+  id: number;
+  description: string;
+  teacup_graph_item: teacup_graph_item[];
+};
 
 export type imgAttributes = {
   name: string;
@@ -70,6 +77,13 @@ export type imgAttributes = {
   provider_metadata: any;
   createdAt: string;
   updatedAt: string;
+};
+
+export type teacup_graph_item = {
+  id: number;
+  text: string;
+  percentage: number;
+  color: string;
 };
 
 export type circle_graph = {
