@@ -4,7 +4,7 @@ import Hero from "../components/Hero.astro";
 import Conclusions from "../components/Conclusions.astro";
 import Tables from "../components/Tables.astro";
 import Graph from "../components/Graph.astro";
-import TeaCup from "../components/TeaCup.svelte";
+import TeacupWrapper from "../components/TeacupWrapper.svelte";
 import Circles from "../components/Circles.astro";
 
 import {
@@ -23,6 +23,6 @@ const content: Content = await getSiteContent("de");
   <Conclusions content={content} />
   <Tables content={content} />
   <Graph content={content} />
-  <TeaCup client:load content={content} />
+  <TeacupWrapper client:load content={content} />
   <Circles content={content} />
 </DefaultLayout>

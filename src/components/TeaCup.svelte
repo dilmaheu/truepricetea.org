@@ -2,10 +2,8 @@
   import HugMug from "./HugMug.svelte";
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
-  import { Content } from "../utils/api";
-  export let content: Content;
-
-  const teacups = content.data.attributes.teacup_graph;
+  import { TeacupGraph } from "../utils/api";
+  export let content: TeacupGraph;
 
   const percentage = writable(0);
   let wrapper: HTMLDivElement;
@@ -44,13 +42,11 @@
   });
 </script>
 
-{#each teacups as teacup}
-  <div class="wrapper" id="teacup-wrapper" bind:this={wrapper}>
-    <div class="teacup">
-      <HugMug {percentage} data={teacup} />
-    </div>
+<div class="wrapper" id="teacup-wrapper" bind:this={wrapper}>
+  <div class="teacup">
+    <HugMug {percentage} data={content} />
   </div>
-{/each}
+</div>
 
 <style>
   .wrapper {
