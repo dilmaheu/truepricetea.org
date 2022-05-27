@@ -4,6 +4,7 @@
   import { writable } from "svelte/store";
   import { TeacupGraph } from "../utils/api";
   export let content: TeacupGraph;
+  export let index: number;
 
   const percentage = writable(0);
   let wrapper: HTMLDivElement;
@@ -12,11 +13,9 @@
   const handleIntersection: IntersectionObserverCallback = (entries) => {
     entries.map((entry) => {
       if (entry.isIntersecting) {
-        console.log("on");
         isVisible = true;
       } else {
         isVisible = false;
-        console.log("off");
       }
     });
   };
@@ -44,7 +43,7 @@
 
 <div class="wrapper" id="teacup-wrapper" bind:this={wrapper}>
   <div class="teacup">
-    <HugMug {percentage} data={content} />
+    <HugMug {percentage} data={content} {index} />
   </div>
 </div>
 

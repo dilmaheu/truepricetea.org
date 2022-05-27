@@ -6,6 +6,6 @@
   const teacups = content.data.attributes.teacup_graph;
 </script>
 
-{#each teacups as teacup}
-  <TeaCup content={teacup} />
+{#each teacups as teacup, i}
+  <TeaCup content={teacup} index={i} />
 {/each}
