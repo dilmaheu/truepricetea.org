@@ -8,11 +8,6 @@
   const description = data.description;
   let items = data.teacup_graph_item;
 
-  // id: number;
-  //   text: string;
-  //   percentage: number;
-  //   color: string;
-
   const offset1 = 0.08;
   const offset2 = 0.25;
   const offset3 = 0.44;
@@ -25,16 +20,6 @@
   $: contentDistance = (contentP * 800) / 100;
   $: contentPercentage = contentDistance < 0 ? 0 : contentDistance;
 
-  // $: console.log(contentPercentage);
-
-  // let items: item[] = [
-  //   { percentage: 41, color: "#759cf0", name: "lorem" },
-  //   { percentage: 18, color: "#a4bc92", name: "lorem" },
-  //   { percentage: 34, color: "yellow", name: "lorem" },
-  //   { percentage: 0.09, color: "#f49a5f", name: "lorem" },
-  //   { percentage: 4, color: "#fbd7bf", name: "lorem" },
-  //   { percentage: 2, color: "#7d9f64", name: "lorem" },
-  // ];
   const graphHeight = 165;
   const itemsWithHeight = items.map((item) => {
     const height = (item.percentage * graphHeight) / 100;
@@ -43,7 +28,6 @@
 </script>
 
 <div class="wrapper">
-  <!-- <p style={"position: absolute; top:0"}>{$percentage}</p> -->
   <!--?xml version="1.0" encoding="UTF-8"?-->
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620.31 749.34">
     <defs>
