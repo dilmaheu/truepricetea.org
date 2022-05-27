@@ -14,10 +14,8 @@ export interface Props {
 const { metatags, _404, content } = Astro.props as Props;
 const description = metatags.data.attributes.description;
 const title = _404 ? "404" : metatags.data.attributes.title;
-const thumbnail =
-  metatags.url + metatags.data.attributes.thumbnail.data.attributes.url;
-const favicon =
-  metatags.url + metatags.data.attributes.favicon.data.attributes.url;
+const thumbnailExt = metatags.data.attributes.thumbnail.data.attributes.ext;
+const faviconExt = metatags.data.attributes.favicon.data.attributes.ext;
 // TODO: CHANGE URL
 const webUrl = "https://truepricetea-org.pages.dev/";
 ---
@@ -29,7 +27,11 @@ const webUrl = "https://truepricetea-org.pages.dev/";
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <!-- favicon -->
-    <link rel="icon" type="image/svg+xml" href={favicon} />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={`assets/cms/${content.lang}/meta/favicon${faviconExt}`}
+    />
 
     <meta name="title" content={title} />
     <meta name="description" content={description} />
@@ -41,14 +43,22 @@ const webUrl = "https://truepricetea-org.pages.dev/";
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={webUrl} />
-    <meta property="og:image" content={thumbnail} />
+    <meta
+      property="og:image"
+      content={webUrl +
+        `assets/cms/${content.lang}/meta/thumbnail${thumbnailExt}`}
+    />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={webUrl} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={thumbnail} />
+    <meta
+      property="twitter:image"
+      content={webUrl +
+        `assets/cms/${content.lang}/meta/thumbnail${thumbnailExt}`}
+    />
   </head>
   <body>
     <Header />

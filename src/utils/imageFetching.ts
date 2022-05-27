@@ -4,7 +4,7 @@ import * as https from "https";
 import * as stream from "stream";
 import fetch from "node-fetch";
 
-import { Content } from "./api";
+import { Content, Metatags } from "./api";
 
 const Stream = stream.Transform;
 
@@ -41,6 +41,13 @@ async function getSiteContent(lang: langT = "en"): Promise<Content> {
   return (await response.json()) as Promise<Content>;
 }
 
+async function getSiteMetatags(lang: langT = "en"): Promise<Metatags> {
+  const response = await fetch(
+    `${url}/api/site-metatag?populate=thumbnail&populate=favicon&locale=${lang}`
+  );
+  return (await response.json()) as Promise<Metatags>;
+}
+
 const langs: langT[] = ["en", "de", "nl"];
 for (let i = 0; i < langs.length; i++) {
   const lang = langs[i];
@@ -51,4 +58,23 @@ for (let i = 0; i < langs.length; i++) {
     const name = footerImgLinks[i].attributes.name;
     downloadImageFromURL(link, name, `./public/assets/cms/${lang}/`);
   }
+
+  const metatags = await getSiteMetatags(lang);
+  const thumbnailLink =
+    url + metatags.data.attributes.thumbnail.data.attributes.url;
+  const thumbnailExt = metatags.data.attributes.thumbnail.data.attributes.ext;
+
+  const faviconLink =
+    url + metatags.data.attributes.favicon.data.attributes.url;
+  const faviconExt = metatags.data.attributes.thumbnail.data.attributes.ext;
+  downloadImageFromURL(
+    thumbnailLink,
+    "thumbnail" + thumbnailExt,
+    `./public/assets/cms/${lang}/meta/`
+  );
+  downloadImageFromURL(
+    faviconLink,
+    "favicon" + faviconExt,
+    `./public/assets/cms/${lang}/meta/`
+  );
 }
