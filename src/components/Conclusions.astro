@@ -8,6 +8,7 @@ export interface Props {
 const { content } = Astro.props as Props;
 
 const title = content.data.attributes.conclusions_title;
+const conclusion_description = content.data.attributes.conclusion_description;
 
 const conclusions = content.data.attributes.conclusions.map(
   (c) => c.conclusion
@@ -19,6 +20,7 @@ const conclusions = content.data.attributes.conclusions.map(
     <h2 class="margin-48 bottom">
       {title}
     </h2>
+    <h4 class="margin-48 bottom">{conclusion_description}</h4>
   </div>
   <div class="container" data-auto-grid="3">
     {conclusions.map((conclusion) => (

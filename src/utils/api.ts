@@ -30,6 +30,7 @@ export interface Content {
       publishedAt: string;
       locale: string;
       conclusions_title: string;
+      conclusion_description: string;
       teacup_description: string;
       conclusions: conclusion[];
       table: table[];
