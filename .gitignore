@@ -25,6 +25,11 @@ yarn-error.log*
 
 # package lock
 package-lock.json
-public/assets/cms/*
-!public/assets/cms/.gitkeep
+public/assets/cms/de/*
+public/assets/cms/en/*
+public/assets/cms/nl/*
+!public/assets/cms/de/.gitkeep
+!public/assets/cms/en/.gitkeep
+!public/assets/cms/nl/.gitkeep
+
 

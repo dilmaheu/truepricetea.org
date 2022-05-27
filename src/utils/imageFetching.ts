@@ -9,7 +9,7 @@ import { Content } from "./api";
 const Stream = stream.Transform;
 
 // Download Image Helper Function
-const downloadImageFromURL = (url: string, filename: string) => {
+const downloadImageFromURL = (url: string, filename: string, path: string) => {
   let client: typeof http | typeof https = http;
   if (url.toString().indexOf("https") === 0) {
     client = https;
@@ -24,7 +24,7 @@ const downloadImageFromURL = (url: string, filename: string) => {
       });
 
       response.on("end", function () {
-        writeFileSync("./public/assets/cms/" + filename, data.read());
+        writeFileSync(path + filename, data.read());
       });
     })
     .end();
@@ -49,6 +49,6 @@ for (let i = 0; i < langs.length; i++) {
   for (let i = 0; i < footerImgLinks.length; i++) {
     const link = url + footerImgLinks[i].attributes.url;
     const name = footerImgLinks[i].attributes.name;
-    downloadImageFromURL(link, name);
+    downloadImageFromURL(link, name, `./public/assets/cms/${lang}/`);
   }
 }
