@@ -5,20 +5,11 @@ import LanguageSwitcher from "./LanguageSwitcher.astro";
 ---
 
 <div id="main-navigation" class="is-desktop padding-16 color-neutral">
-  <div class="container ">
-    <div class="grid w-full gap-small">
-      <div class="wrapper small-12 x-end w-full">
-        <nav class="desktop-menu">
-          <ul>
-            <slot></slot>
-          </ul>
-        </nav>
-        <div class="interactive">
-          <DarkMode client:load />
-          <ResponsiveToggle client:load />
-          <LanguageSwitcher />
-        </div>
-      </div>
+  <div class="container w-full">
+    <div class="interactive">
+      <DarkMode client:load />
+      <ResponsiveToggle client:load />
+      <LanguageSwitcher />
     </div>
   </div>
 </div>
@@ -221,7 +212,7 @@ import LanguageSwitcher from "./LanguageSwitcher.astro";
   #main-navigation {
     > .container {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       flex-wrap: wrap;
     }
 

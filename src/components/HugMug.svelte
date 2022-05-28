@@ -13,9 +13,6 @@
   const offset1 = 0.15;
   const offset2 = 0.32;
   const offset3 = 0.46;
-  // const offset1 = 0.25;
-  // const offset2 = 0.44;
-  // const offset3 = 0.65;
 
   $: detail1Percentage = (($percentage - offset1) * 100) / 0.15;
   $: detail2Percentage = (($percentage - offset2) * 100) / 0.16;
@@ -99,9 +96,9 @@
     {/each}
 
     <rect
-      x="56"
+      x="55"
       y={360 - helperPercentage}
-      width="385px"
+      width="386px"
       height={256}
       style={`fill: ${colorHelper}; stroke:none;`}
     />
@@ -170,5 +167,11 @@
 
   svg {
     width: 400px;
+  }
+
+  @media only screen and (max-width: 425px) {
+    .legend-item {
+      margin-left: 0;
+    }
   }
 </style>
