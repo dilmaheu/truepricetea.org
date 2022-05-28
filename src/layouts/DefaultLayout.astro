@@ -59,11 +59,8 @@ const webUrl = "https://truepricetea.org/";
       content={webUrl +
         `/assets/cms/${content.lang}/meta/thumbnail${thumbnailExt}`}
     />
-    <script
-      defer
-      data-domain={webUrl}
-      data-api="/kind/event"
-      src="/kind/script.js"></script>
+    <script defer data-domain={webUrl} src="https://plausible.io/js/script.js"
+    ></script>
   </head>
   <body>
     <Header />
