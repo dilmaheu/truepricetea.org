@@ -16,8 +16,8 @@ const description = metatags.data.attributes.description;
 const title = _404 ? "404" : metatags.data.attributes.title;
 const thumbnailExt = metatags.data.attributes.thumbnail.data.attributes.ext;
 const faviconExt = metatags.data.attributes.favicon.data.attributes.ext;
-// TODO: CHANGE URL
-const webUrl = "https://truepricetea-org.pages.dev/";
+
+const webUrl = "https://truepricetea.org/";
 ---
 
 <html lang={metatags.lang} dir="ltr">
@@ -59,6 +59,7 @@ const webUrl = "https://truepricetea-org.pages.dev/";
       content={webUrl +
         `assets/cms/${content.lang}/meta/thumbnail${thumbnailExt}`}
     />
+    <script defer data-domain={webUrl} src="scripts/script.js"></script>
   </head>
   <body>
     <Header />
