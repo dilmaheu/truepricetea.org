@@ -8,23 +8,38 @@
   const description = data.description;
   let items = data.teacup_graph_item;
 
-  const offset1 = 0.08;
-  const offset2 = 0.25;
-  const offset3 = 0.44;
-  $: hideContent = $percentage < 0.44;
-  $: detail1Percentage = (($percentage - offset1) * 100) / 0.2;
-  $: detail2Percentage = (($percentage - offset2) * 100) / 0.2;
-  $: detail3Percentage = (($percentage - offset3) * 100) / 0.2;
+  const colorHelper = "#7979ea";
 
-  $: contentP = (($percentage - 0.65) / 0.35) * 100;
-  $: contentDistance = (contentP * 800) / 100;
-  $: contentPercentage = contentDistance < 0 ? 0 : contentDistance;
+  const offset1 = 0.15;
+  const offset2 = 0.32;
+  const offset3 = 0.46;
+  // const offset1 = 0.25;
+  // const offset2 = 0.44;
+  // const offset3 = 0.65;
 
-  const graphHeight = 165;
-  const itemsWithHeight = items.map((item) => {
-    const height = (item.percentage * graphHeight) / 100;
+  $: detail1Percentage = (($percentage - offset1) * 100) / 0.15;
+  $: detail2Percentage = (($percentage - offset2) * 100) / 0.16;
+  $: detail3Percentage = (($percentage - offset3) * 100) / 0.18;
+
+  const offset4 = 0.65;
+  $: hideHelper = $percentage < offset4;
+
+  $: helperPercentage =
+    $percentage < offset4 ? 0 : (($percentage - offset4) * 253) / 0.2;
+
+  const graphHeight = 253;
+  items.sort((a, b) => a.percentage - b.percentage);
+
+  let itemsWithHeight = items.map((item) => {
+    let height = (item.percentage * graphHeight) / 100;
     return { ...item, height };
   });
+
+  itemsWithHeight = itemsWithHeight.map((item, i) => {
+    if (i > 0) item.height += itemsWithHeight[i - 1].height;
+    return item;
+  });
+  itemsWithHeight.sort((a, b) => b.height - a.height);
 </script>
 
 <div class="wrapper">
@@ -74,6 +89,33 @@
       </linearGradient>
     </defs>
 
+    {#each itemsWithHeight as item}
+      <rect
+        x="56"
+        y={360 + 255 - item.height}
+        width="384px"
+        height={item.height}
+        style={`fill: ${item.color}; stroke:none;`}
+      />
+    {/each}
+
+    <rect
+      x="56"
+      y={360 - helperPercentage}
+      width="385px"
+      height={256}
+      style={`fill: ${colorHelper}; stroke:none;`}
+    />
+
+    <rect
+      x="55"
+      y={-90}
+      width="386px"
+      height={453}
+      style={`fill: ${colorHelper}; stroke:none;`}
+      class:hideHelper
+    />
+
     <path
       d="M274.2,.6c-3.3,.5-10.4,2.3-15.7,4.1-20.8,6.7-32.9,19.7-35.2,37.7-.9,6.8,.6,6.6,4.7-.4,8.5-14.5,20-20.4,39.9-20.4,24.9,0,45.5,8.4,62.4,25.4,12.1,12.2,20,25.8,23.5,40.4,1.8,7.3,2,10.8,1.6,22.2-.5,14.7-2.4,23.6-7.7,36.3-5.9,14.2-11.3,20.8-43.1,52.9-31.9,32.2-37.9,39.5-45.9,56.2-5.4,11.3-6.7,19.1-5.1,29.9,1.3,8.7,3.6,13.8,6.9,15.6,1.8,1,2,.5,2.4-7.2,.8-12.2,3.7-17.8,15.1-29.4,5.1-5.3,15.9-14.5,24.2-20.7s22-16.4,30.5-22.8c17.5-13,28.5-23.4,36.8-34.7,29.5-39.7,32.2-97.7,6.6-136.3-14.8-22.3-41-40.3-67.9-46.9-9.4-2.3-25.5-3.2-34-1.9Z"
       fill={`url(#detail-1-${index})`}
@@ -87,25 +129,14 @@
       fill={`url(#detail-3-${index})`}
     />
   </svg>
-  <div class="data">
-    <div
-      class="helper"
-      style={`transform: translateY(-${contentPercentage}px)`}
-    />
-    {#each itemsWithHeight as item}
-      <div
-        class="data-i"
-        style={`height: ${item.height}px; background-color: ${item.color}`}
-        class:hideContent
-      />
-    {/each}
-  </div>
 </div>
 
 <div class="legend">
   {#each itemsWithHeight as item}
-    <span class="name">{item.text}</span>
-    <span class="icon" style={`color: ${item.color};`} />
+    <div class="legend-item">
+      <span class="name">{item.text}</span>
+      <span class="icon" style={`color: ${item.color};`} />
+    </div>
   {/each}
 </div>
 
@@ -120,21 +151,22 @@
     overflow: hidden;
   }
 
-  .hideContent {
-    display: none;
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
   }
 
-  .legend {
-    margin-bottom: 40px;
+  .legend-item {
+    margin-bottom: 20px;
+    margin-left: 30px;
   }
 
   .description {
     white-space: pre-wrap;
     text-align: center;
-  }
-
-  .name {
-    margin-left: 30px;
   }
 
   .icon {
@@ -146,30 +178,11 @@
     background: currentColor;
   }
 
+  .hideHelper {
+    display: none;
+  }
+
   svg {
     width: 400px;
-  }
-
-  .data {
-    width: 100%;
-    position: absolute;
-    z-index: -1;
-    top: 231px;
-    left: 35px;
-  }
-
-  .helper {
-    position: absolute;
-    top: -620px;
-    left: 0;
-    width: 100%;
-    height: 800px;
-    background-color: rgb(121, 121, 234);
-  }
-
-  .data-i {
-    height: 55px;
-    width: 250px;
-    z-index: -1;
   }
 </style>

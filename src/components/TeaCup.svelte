@@ -41,23 +41,29 @@
   });
 </script>
 
-<div class="wrapper" bind:this={wrapper}>
-  <div class="teacup">
-    <HugMug {percentage} data={content} {index} />
+<div class="bc">
+  <div class="t-wrapper container" bind:this={wrapper}>
+    <div class="teacup">
+      <HugMug {percentage} data={content} {index} />
+    </div>
   </div>
 </div>
 
 <style>
-  .wrapper {
-    height: 4000px;
-    padding: 200px 0;
+  .bc {
     background-color: rgb(121, 121, 234);
+  }
+
+  .t-wrapper {
+    height: 4500px;
+    padding: 200px 0;
   }
 
   .teacup {
     position: sticky;
     left: 50%;
-    top: 200px;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
