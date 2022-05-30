@@ -120,4 +120,8 @@ body {
       @include size-18;
     }
   }
+
+  p {
+    white-space: pre-wrap;
+  }
 }
