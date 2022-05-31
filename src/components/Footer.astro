@@ -1,5 +1,6 @@
 ---
 import { Content } from "../utils/api";
+import { Markdown } from "astro/components";
 
 export interface Props {
   content: Content;
@@ -23,7 +24,11 @@ const logos = content.data.attributes.footer?.footer_logos?.data || [];
       ))}
     </div>
   </div>
-  <p class="align-horizontal text-al padding-8">{text}</p>
+  <div class="align-horizontal text-al padding-8">
+    <Markdown content={text}>
+
+    </Markdown>
+  </div>
 </footer>
 
 <style>
