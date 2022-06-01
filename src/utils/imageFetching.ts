@@ -66,7 +66,7 @@ for (let i = 0; i < langs.length; i++) {
 
   const faviconLink =
     url + metatags.data.attributes.favicon.data.attributes.url;
-  const faviconExt = metatags.data.attributes.thumbnail.data.attributes.ext;
+  const faviconExt = metatags.data.attributes.favicon.data.attributes.ext;
   downloadImageFromURL(
     thumbnailLink,
     "thumbnail" + thumbnailExt,
