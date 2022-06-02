@@ -1,6 +1,6 @@
 <script lang="ts">
   import TeaCup from "./TeaCup.svelte";
-  import { Content, TeacupGraph } from "../utils/api";
+  import { Content } from "../utils/api";
   export let content: Content;
 
   const teacups = content.data.attributes.teacup_graph;
